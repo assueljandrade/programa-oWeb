@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Exercício 1 — Componente com Props</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .card-header {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.75rem;
+    }
+
+    .azul {
+      color: #185FA5;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .laranja {
+      color: #BA7517;
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .idade-box {
+      background: #f0f2f5;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .idade-box span {
+      font-weight: 600;
+      color: #333;
+      font-size: 1.1rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,37 +80,31 @@
 
   <script type="text/babel">
 
-     const Aviso = ({nome, sobrenome, dia, mes, ano}) => <div className="msg" nome={nome}
-      sobrenome={sobrenome} dia={dia} mes={mes} ano={ano} />
+    const Pessoa = ({ nome, sobrenome, dia, mes, ano }) => (
+      <div className="card">
+        <div className="card-header">Dados pessoais</div>
 
-      
-       const propsMsg1 = {
-        nome: 'Assuel',
-        sobrenome: 'Andrade',
-        : 'ATENÇÃO: chão escorregadio!',
-        propFicticia: 'teste'
-       }
-    /*
-      EXERCÍCIO DE FIXAÇÃO nº 1
+        <p className="azul">{nome} {sobrenome}</p>
 
-      2) Declare uma função de componente que receba as seguintes
-         props personalizadas: nome, sobrenome, dia, mes e ano.
+        <p className="laranja">{dia}/{mes}/{ano}</p>
 
-      3) Na função de componente, coloque um fragment e, dentro dele,
-         dois parágrafos: no primeiro, deve ser aplicada a classe que
-         deixa a cor do texto em uma cor e, no outro, a classe que deixa
-         a cor na outra cor.
+        <div className="idade-box">
+          Idade em 2026: <span>{2026 - ano}</span>
+        </div>
+      </div>
+    );
 
-      4) No primeiro parágrafo, deve ser exibido o nome completo, composto
-         por nome e sobrenome.
+    const propsMsg1 = {
+      nome: 'Assuel',
+      sobrenome: 'Andrade',
+      dia: 15,
+      mes: 6,
+      ano: 1990
+    };
 
-      5) No segundo parágrafo, deve ser exibida a data de nascimento,
-         composta pelo dia, pelo mês e pelo ano, separados por /.
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Pessoa {...propsMsg1} />);
 
-      6) No componente, crie, ainda, uma div. Dentro dela, deve ser exibida
-         a idade que a pessoa terá ao final do ano, calculada por meio de
-         um cálculo simples (2026 menos o ano de nascimento informado).
-    */
   </script>
 
 </body>
